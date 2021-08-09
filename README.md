@@ -25,12 +25,13 @@ Kubernetes is a open-source platform for managing containerized workloads and se
 
 **Exporting image**  
 1. Sign up an account at [https://gitlab.nrp-nautilus.io](https://gitlab.nrp-nautilus.io)
-2. Login to Gitlab registry, in the command line   
+2. Create a new blank project called **nautilus_tutorial**
+3. Login to Gitlab registry, in the command line   
 `docker login gitlab-registry.nrp-nautilus.io -u $USERNAEM`
 4. Push the image to GitLab  
 `docker push gitlab-registry.nrp-nautilus.io/yueyujiang/nautilus_tutorial/build_tree:v1`
 
-Now the container is ready to use. Let's go to creating pod in Nautilus.
+Now the container is ready to use. Let's go to creating a pod in Nautilus.
 
 ### Pod
 Pods are the smallest deployable units of computing that you can create and manage in Kubernetes.    
@@ -45,16 +46,20 @@ Pods are the smallest deployable units of computing that you can create and mana
 `kubectl create -f yamlfile/gpu-pod.yaml`.   
 When the pod gets ready got into the pod (`kubectl exec -it gpu-pod -- /bin/bash`), type `gpustat -i 1 -c -u -P` to check the availibility of the GPU.
 
+Remember to **delete the pod** whenever you finish your job. `kubectl delete pod pod_name`
+
 **Storage**
 1. Basic: emptyDir (This is a local scratch volumn, it would be gone once the pod is deleted)
-2. Persistent storage:    
-  a. Let's create a persistent volume.     
+2. Persistent storage (More info: https://ucsd-prp.gitlab.io/userdocs/storage/ceph-posix/):    
+  a. Let's create a persistent volume.      
   `kubectl create -f yamlfile/pvc1.yaml`.   
   b. One more.    
   `kubectl create -f yamlfile/pvc2.yaml`.   
   c. Open yamlfile/cpu-pod-storage.yaml, see how we mount the volumns to the pod.      
   d. Let's create a pod with the two volumns mounted.     
-  `kubectl create -f yamlfile/cpu-pod-storage.yaml`    
+  `kubectl create -f yamlfile/cpu-pod-storage.yaml` 
+  
+Delete the PVC when you don't need it `kubectl delete pvc pvc_name`
   
   ### Job
   One drawback of Pod is that it has time limit. A pod would be destroyed after 6 hours. Therefore, if we want to run long time job, we would like to create a Job instead of a Pod.
@@ -63,6 +68,6 @@ When the pod gets ready got into the pod (`kubectl exec -it gpu-pod -- /bin/bash
   2. All stdout and stderr output from the script will be preserved and accessible by running     
   `kubectl logs pod_name`
   
-That is it! Hopefully you would have some ideas on how to work with Kubenetes now. Kubenetes is a powerful and well-developed platform. This repo only cover limited materials on Nautilus or Kubenetes. And honestly I don't fully understand it myself. Here are some resources that might help if you want to know more about this tool,
-1. Kubenetes: https://kubernetes.io/
+That is it! Hopefully you would have some ideas on how to work with Kubernetes now. Kubernetes is a powerful and well-developed platform. This repo only cover limited materials on Nautilus or Kubenetes. And honestly I don't fully understand it myself. Here are some resources that might help if you want to know more about this tool,
+1. Kubernetes: https://kubernetes.io/
 2. Communication system for Nautilus, https://element.nrp-nautilus.io/. You can ask question regarding nautilus here and admin in the group are very helpful!
