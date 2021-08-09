@@ -5,9 +5,10 @@ Before we get started,
 1. Clone this repo to your PC.    
 `git clone https://github.com/yueyujiang/Nautilus_tutorial/ && cd Nautilus_tutorial`
 2. Login at [this](https://nautilus.optiputer.net/) page. After the first login, you would become a guest. An admin users can add your account to a namespace and then you would become a user.
-3. Click the **Get Config** link on top right corner of the page and save the config file.
-4. At terminal `mkdir ~/.kube` and put the config file to the `~/.kube` directory.
-5. To make sure we are ready, type `kubectl get nodes` to list the cluster nodes.
+3. Install Kubernetes https://kubernetes.io/docs/tasks/tools/
+4. Click the **Get Config** link on top right corner of the page and save the config file.
+5. At terminal `mkdir ~/.kube` and put the config file to the `~/.kube` directory.
+6. To make sure we are ready, type `kubectl get nodes` to list the cluster nodes.
 
 ## Kubernetes
 Kubernetes is a open-source platform for managing containerized workloads and services. A lot of Docker container images are available at the [Docker webiste](https://hub.docker.com/search?q=&type=image). Kubernetes is compatible with those images. Now let's also try to create our own one.  
