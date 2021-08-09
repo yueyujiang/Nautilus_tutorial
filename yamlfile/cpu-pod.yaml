@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: pytorch-phy5
-    image: gitlab-registry.nautilus.optiputer.net/yueyujiang/nautilus_tutorial:test1
+    image: gitlab-registry.nautilus.optiputer.net/yueyujiang/nautilus_tutorial/build_tree:v1
     command: ["sh", "-c", "sleep infinity"]
     resources:
       limits:
