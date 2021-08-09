@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: myapp
+spec:
+  template:
+    spec:
+      containers:
+      - name: pytorch-phy5
+        image: gitlab-registry.nautilus.optiputer.net/yueyujiang/docker_images:pytorch-phy
+        command: 
+        - sh
+        - -c
+        - "cd /documents/project/placement_project && bash run_in_the_pod.sh"
+        volumeMounts:
+        - name: documents
+          mountPath: /documents
+        - name: dshm
+          mountPath: /dev/shm
+        resources:
+          limits:
+            memory: 32Gi
+            cpu: "12"
+            nvidia.com/gpu: "3"
+            ephemeral-storage: 100Gi
+          requests:
+            memory: 24Gi
+            cpu: "12"
+            nvidia.com/gpu: "3"
+            ephemeral-storage: 100Gi
+      volumes:
+        - name: documents
+          persistentVolumeClaim:
+            claimName: test-vol3
+        - name: dshm
+          emptyDir:
+            medium: Memory
+      restartPolicy: Never
+  backoffLimit: 5

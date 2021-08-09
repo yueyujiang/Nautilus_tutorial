@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: myapp
+spec:
+  template:
+    spec:
+      containers:
+      - name: pytorch-phy5
+	image: gitlab-registry.nautilus.optiputer.net/yueyujiang/nautilus_tutorial/build_tree:v1
+        command: 
+        - sh
+        - -c
+        - "cd /opt/repo/Nautilus_tutorial && bash build_tree.sh"
+        volumeMounts:
+        - name: nautilus_tutorial
+          mountPath: /nautilus_tutorial
+        resources:
+          limits:
+            memory: 32Gi
+            cpu: "12"
+          requests:
+            memory: 24Gi
+            cpu: "12"
+      initContainers:
+      - name: init-clone-repo
+        image: alpine/git
+        args:
+          - clone
+          - git clone https://github.com/yueyujiang/Nautilus_tutorial
+          - /opt/repo/Nautilus_tutorial
+        volumeMounts:
+          - name: git-repo
+            mountPath: /opt/repo
+      volumes:
+      - name: git-repo
+        emptyDir: {}
+      restartPolicy: Never
+  backoffLimit: 5

@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod1-1
+spec:
+  containers:
+  - name: pytorch-phy5
+    #image: gitlab-registry.nautilus.optiputer.net/yueyujiang/docker_images:pytorch-phy
+    image: gitlab-registry.nautilus.optiputer.net/yueyujiang/nautilus_tutorial:test1
+    #image: ubuntu
+    #image: pytorch/pytorch 
+    command: ["sh", "-c", "sleep infinity"]
+    volumeMounts:
+    - name: documents
+      mountPath: /documents
+    - name: data
+      mountPath: /data
+    - name: dshm
+      mountPath: /dev/shm
+    resources:
+      limits:
+        memory: 8Gi
+        cpu: "2"
+        nvidia.com/gpu: "1"
+        ephemeral-storage: 100Gi
+      requests:
+        memory: 8Gi
+        cpu: "2"
+        nvidia.com/gpu: "1"
+        ephemeral-storage: 100Gi
+  volumes:
+    - name: documents
+      persistentVolumeClaim:
+        claimName: test-vol2
+    - name: data
+      persistentVolumeClaim:
+        claimName: test-vol1
+    - name: dshm
+      emptyDir:
+        medium: Memory
+  restartPolicy: Never
