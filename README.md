@@ -4,14 +4,16 @@ This is a tutorial of basic usages of Nautilus. We will begin by introducing how
 Before we get started,
 1. Clone this repo to your PC.    
 `git clone https://github.com/yueyujiang/Nautilus_tutorial/ && cd Nautilus_tutorial`
-2. Login at [this](https://nautilus.optiputer.net/) page. After the first login, you would become a guest. An admin users can add your account to a namespace and then you would become a user.
-3. Install Kubernetes https://kubernetes.io/docs/tasks/tools/
-4. Click the **Get Config** link on top right corner of the page and save the config file.
-5. At terminal `mkdir ~/.kube` and put the config file to the `~/.kube` directory.
-6. To make sure we are ready, type `kubectl get nodes` to list the cluster nodes.
-7. Create an account at [https://hub.docker.com/](https://hub.docker.com/)
-8. Install Docker from [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
-9. Sign up an account at [https://gitlab.nrp-nautilus.io](https://gitlab.nrp-nautilus.io)
+### Nautilus
+1. Login at [https://nautilus.optiputer.net/](https://nautilus.optiputer.net/) page. After the first login, you would become a guest. An admin users can add your account to a namespace and then you would become a user.
+2. Install Kubernetes https://kubernetes.io/docs/tasks/tools/
+3. Click the **Get Config** link on top right corner of the page and save the config file.
+4. At terminal `mkdir ~/.kube` and put the config file to the `~/.kube` directory.
+5. To make sure we are ready, type `kubectl get nodes` to list the cluster nodes.
+### docker
+1. Create an account at [https://hub.docker.com/](https://hub.docker.com/)
+2. Install Docker from [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
+10. Sign up an account at [https://gitlab.nrp-nautilus.io](https://gitlab.nrp-nautilus.io)
 
 ## Kubernetes
 Kubernetes is a open-source platform for managing containerized workloads and services. A lot of Docker container images are available at the [Docker webiste](https://hub.docker.com/search?q=&type=image). Kubernetes is compatible with those images. Now let's also try to create our own one.  
