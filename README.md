@@ -9,27 +9,27 @@ Before we get started,
 4. Click the **Get Config** link on top right corner of the page and save the config file.
 5. At terminal `mkdir ~/.kube` and put the config file to the `~/.kube` directory.
 6. To make sure we are ready, type `kubectl get nodes` to list the cluster nodes.
+7. Create an account at [https://hub.docker.com/](https://hub.docker.com/)
+8. Install Docker from [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
+9. Sign up an account at [https://gitlab.nrp-nautilus.io](https://gitlab.nrp-nautilus.io)
 
 ## Kubernetes
 Kubernetes is a open-source platform for managing containerized workloads and services. A lot of Docker container images are available at the [Docker webiste](https://hub.docker.com/search?q=&type=image). Kubernetes is compatible with those images. Now let's also try to create our own one.  
 ### Create Docker image
 **Building image**
-1. Create an account at [https://hub.docker.com/](https://hub.docker.com/)
-2. Install Docker from [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
-4. Run Docker in your PC  
-5. Build Docker image use  
-`docker build -t gitlab-registry.nrp-nautilus.io/yueyujiang/nautilus_tutorial/build_tree:test ./dockerfile`  
-6. Use `docker images` to check your built images
-7. A docker image is built! Now try to start a contrainer on your local PC.   
+1. Run Docker in your PC  
+2. Build Docker image use  
+`docker build -t gitlab-registry.nrp-nautilus.io/yueyujiang/nautilus_tutorial/build_tree:v1 ./dockerfile`  
+3. Use `docker images` to check your built images
+4. A docker image is built! Now try to start a contrainer on your local PC.   
 `docker run -it --rm -v $PWD:/build_tree gitlab-registry.nrp-nautilus.io/yueyujiang/nautilus_tutorial/build_tree:v1`
 (type `exit` to exit the container)
 
 **Exporting image**  
-1. Sign up an account at [https://gitlab.nrp-nautilus.io](https://gitlab.nrp-nautilus.io)
-2. Create a new blank project called **nautilus_tutorial**
-3. Login to Gitlab registry, in the command line   
+1. Create a new blank project called **nautilus_tutorial** in [https://gitlab.nrp-nautilus.io](https://gitlab.nrp-nautilus.io)
+2. Login to Gitlab registry, in the command line   
 `docker login gitlab-registry.nrp-nautilus.io -u $USERNAEM`
-4. Push the image to GitLab  
+3. Push the image to GitLab
 `docker push gitlab-registry.nrp-nautilus.io/yueyujiang/nautilus_tutorial/build_tree:v1`
 
 Now the container is ready to use. Let's go to creating a pod in Nautilus.
