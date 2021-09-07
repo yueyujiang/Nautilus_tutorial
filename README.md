@@ -13,7 +13,7 @@ Before we get started,
 ### docker
 1. Create an account at [https://hub.docker.com/](https://hub.docker.com/)
 2. Install Docker from [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
-10. Sign up an account at [https://gitlab.nrp-nautilus.io](https://gitlab.nrp-nautilus.io)
+10. Sign up an account at [https://gitlab.nrp-nautilus.io](https://gitlab.nrp-nautilus.io) using UCSD email (username@ucsd.edu).
 
 ## Kubernetes
 Kubernetes is a open-source platform for managing containerized workloads and services. A lot of Docker container images are available at the [Docker webiste](https://hub.docker.com/search?q=&type=image). Kubernetes is compatible with those images. Now let's also try to create our own one.  
