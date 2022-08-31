@@ -31,7 +31,7 @@ spec:
       volumes:
         - name: documents
           persistentVolumeClaim:
-            claimName: test-vol3
+            claimName: vol2
         - name: dshm
           emptyDir:
             medium: Memory
