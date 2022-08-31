@@ -24,8 +24,8 @@ spec:
   volumes:
     - name: documents
       persistentVolumeClaim:
-        claimName: test-vol2
+        claimName: vol2
     - name: data
       persistentVolumeClaim:
-        claimName: test-vol1
+        claimName: vol1
   restartPolicy: Never
